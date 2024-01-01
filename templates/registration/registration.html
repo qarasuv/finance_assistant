@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Registration{% endblock %}
+
+
+
+{% block content %}
+<div class="register-box" style="position: absolute; left: 50%; transform: translateX(-50%);">
+  <div class="register-logo">
+    <a href="#"><b>Registration</b></a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <form action="{% url 'registration' %}" method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+
+        {% for f in form %}
+
+        <div class="input-group mb-3">
+          <input class="form-control" placeholder="{{ f.label }}" type="{{ f.field.widget.input_type }}"
+            name="{{ f.name }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <div class="row">
+          <div class="col-8">
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+{% endblock %}

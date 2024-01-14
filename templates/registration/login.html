@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Log in{% endblock %}
+
+
+
+{% block content %}
+<div class="login-box" style="position: absolute; left: 50%; transform: translateX(-50%);">
+  <div class="login-logo">
+    <b>Log</b> in
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <div class="input-group mb-3">
+          <input class="form-control" placeholder="{{ f.label }}" type="{{ f.field.widget.input_type }}"
+            name="{{ f.name }}">
+
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <div class="row">
+          <div class="col-8">
+            <p class="mb-0">
+              <a href="{% url 'registration' %}" class="text-center">Registration</a>
+            </p>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <!-- /.social-auth-links -->
+
+
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import *
+from .models import Transaction, TransactionCategory
 
 
 @admin.register(TransactionCategory)
@@ -10,4 +10,4 @@ class TransactionCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ('type', 'date', 'amount', 'description', 'category', 'user')
+    list_display = ('type', 'date', 'amount', 'description', 'category', 'author')

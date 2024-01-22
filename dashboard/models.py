@@ -16,5 +16,5 @@ class Transaction(models.Model):
     amount = models.IntegerField()
     description = models.TextField()
     category = models.ForeignKey(TransactionCategory, related_name='transaction', on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User, related_name='transactions', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='transactions', on_delete=models.CASCADE)
 

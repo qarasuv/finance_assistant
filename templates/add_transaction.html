@@ -2,8 +2,6 @@
 {% load static %}
 {% block title %}Add{% endblock %}
 
-
-
 {% block content %}
 <div class="col-md-6" style="position: absolute; left: 50%; transform: translateX(-50%);">
     <div class="card card-primary">
@@ -12,15 +10,9 @@
       </div>
       <div class="card-body">
             <form method="post" id="transactionForm">
-
                 {% csrf_token %}
                 <div class="form-error">{{ form.non_field_errors }}</div>
-
-
                 <input type="hidden" name="{{ form.user.name }}" value="{{ request.user.id }}">
-
-
-                
                 <label>{{ form.date.label }}</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
                     <input type="{{ form.date.field.widget.input_type }}" name="{{ form.date.name }}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
@@ -30,14 +22,10 @@
                 </div>
                 <div class="form-error">{{ form.date.errors }}</div>
                 <br>
-
-
                 <label>{{ form.amount.label }}</label>
                 <input type="{{ form.amount.field.widget.input_type }}" name="{{ form.amount.name }}" class="form-control" placeholder="Enter amount"/>
                 <div class="form-error">{{ form.amount.errors }}</div>
                 <br>
-
-                
                 <div class="form-group">
                     <div class="form-group">
                         <label>{{ form.category.label }}</label>
@@ -51,12 +39,10 @@
                 <div class="form-error">{{ form.category.errors }}</div>
                 <br>
 
-
                 <label>{{ form.description.label }}</label>
                 <input type="{{ form.description.field.widget.input_type }}" name="{{ form.description.name }}"class="form-control" placeholder="Enter description">
                 <div class="form-error">{{ form.description.errors }}</div>
                 <br>
-
 
                 <div class="col-8">
                     <div class="custom-control custom-radio">
@@ -79,8 +65,6 @@
                     </div>
                     <!-- /.col -->
                   </div>
-
-
             </form>
       </div>
         <div class="card-footer">

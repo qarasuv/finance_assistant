@@ -12,7 +12,7 @@
             <form method="post" id="transactionForm">
                 {% csrf_token %}
                 <div class="form-error">{{ form.non_field_errors }}</div>
-                <input type="hidden" name="{{ form.user.name }}" value="{{ request.user.id }}">
+                <input type="hidden" name="{{ form.author.name }}" value="{{ request.user.id }}">
                 <label>{{ form.date.label }}</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
                     <input type="{{ form.date.field.widget.input_type }}" name="{{ form.date.name }}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
@@ -46,11 +46,11 @@
 
                 <div class="col-8">
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio1" name="type" value="income">
+                        <input class="custom-control-input" type="radio" id="customRadio1" name="type" value="Income">
                         <label for="customRadio1" class="custom-control-label">Income</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio2" name="type" checked value="expense">
+                        <input class="custom-control-input" type="radio" id="customRadio2" name="type" checked value="Expense">
                         <label for="customRadio2" class="custom-control-label">Expense</label>
                     </div>
                 </div>

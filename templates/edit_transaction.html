@@ -13,23 +13,25 @@
                 {% csrf_token %}
                 <div class="form-error">{{ form.non_field_errors }}</div>
                 <input type="hidden" name="{{ form.author.name }}" value="{{ request.user.id }}">
+
                 <label>{{ form.date.label }}</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="{{ form.date.field.widget.input_type }}" name="{{ form.date.name }}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                    <input type="{{ form.date.field.widget.input_type }}" name="{{ form.date.name }}" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{ transaction.date|date:'Y-m-d' }}"/>
                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                 </div>
                 <div class="form-error">{{ form.date.errors }}</div>
                 <br>
+
                 <label>{{ form.amount.label }}</label>
-                <input type="{{ form.amount.field.widget.input_type }}" name="{{ form.amount.name }}" class="form-control" placeholder="Enter amount"/>
+                <input type="{{ form.amount.field.widget.input_type }}" name="{{ form.amount.name }}" class="form-control" placeholder="Enter amount" value="{{ transaction.amount }}"/>
                 <div class="form-error">{{ form.amount.errors }}</div>
                 <br>
                 <div class="form-group">
                     <div class="form-group">
                         <label>{{ form.category.label }}</label>
-                        <select class="form-control select2bs4" type="{{ form.category.field.widget.input_type }}" name="{{ form.category.name }}" style="width: 100%;">
+                        <select class="form-control select2bs4" type="{{ form.category.field.widget.input_type }}" name="{{ form.category.name }}" style="width: 100%;" value="{{ transaction.category }}">
                             {% for cat in form.category %}
                             {{cat}}
                             {% endfor %}
@@ -40,22 +42,31 @@
                 <br>
 
                 <label>{{ form.description.label }}</label>
-                <input type="{{ form.description.field.widget.input_type }}" name="{{ form.description.name }}"class="form-control" placeholder="Enter description">
+                <input type="{{ form.description.field.widget.input_type }}" name="{{ form.description.name }}"class="form-control" placeholder="Enter description" value="{{ transaction.description }}">
                 <div class="form-error">{{ form.description.errors }}</div>
                 <br>
 
-                <div class="col-8">
-                    <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio1" name="type" value="Income">
-                        <label for="customRadio1" class="custom-control-label">Income</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio2" name="type" checked value="Expense">
-                        <label for="customRadio2" class="custom-control-label">Expense</label>
-                    </div>
-                </div>
+<div class="col-8">
+    <div class="custom-control custom-radio">
+        {% if transaction.type == 'Income' %}
+            <input class="custom-control-input" type="radio" id="customRadio1" name="type" value="Income" checked>
+        {% else %}
+            <input class="custom-control-input" type="radio" id="customRadio1" name="type" value="Income">
+        {% endif %}
+        <label for="customRadio1" class="custom-control-label">Income</label>
+    </div>
+    <div class="custom-control custom-radio">
+        {% if transaction.type == 'Expense' %}
+            <input class="custom-control-input" type="radio" id="customRadio2" name="type"  value="Expense" checked>
+        {% else %}
+            <input class="custom-control-input" type="radio" id="customRadio2" name="type"  value="Expense">
+        {% endif %}
+        <label for="customRadio2" class="custom-control-label">Expense</label>
+    </div>
+</div>
+
                 <div class="form-error">{{ form.type.errors }}</div>
-                    
+
                 <div class="row">
                     <div class="col-8">
 

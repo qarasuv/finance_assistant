@@ -18,3 +18,7 @@ class Transaction(models.Model):
     category = models.ForeignKey(TransactionCategory, related_name='transaction', on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, related_name='transactions', on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        return f'/transactions/history'
+
+

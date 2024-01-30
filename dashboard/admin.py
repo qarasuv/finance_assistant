@@ -5,7 +5,7 @@ from .models import Transaction, TransactionCategory
 
 @admin.register(TransactionCategory)
 class TransactionCategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'author')
 
 
 @admin.register(Transaction)

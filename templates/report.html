@@ -7,8 +7,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-            <form action="{% url 'report-generate' %}" method="post">
-                {% csrf_token %}
+            <form action="{% url 'report-generate' %}" method="get">
                 <div class="row">
                     <div class="col-8">
                         <h3 class="card-title mt-2" >Report: Select date range</h3>
@@ -54,5 +53,12 @@
         </div>
     </div>
 </div>
-
+{% if report_data %}
+<form action="{% url 'report-export' %}" method="get">
+    <div class="text-right mt-1" style="padding-right: 10px;">
+        <input type="hidden" name="date_range" value="{{ request.GET.date_range }}">
+        <button type="submit" class="btn btn-success">Download Report</button>
+    </div>
+</form>
+{% endif %}
 {% endblock %}

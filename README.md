@@ -7,16 +7,11 @@
 1. Клонируйте репозиторий:
     ```bash
     git clone https://github.com/qarasuv/finance_assistant.git
-    ```
-
-2. Установите зависимости:
-    ```bash
+    cd finance_assistant
+    python3 -m venv env
+    source env/bin/activate
     pip install -r requirements.txt
-    ```
-
-3. Запустите проект:
-    ```bash
-    python manage.py runserver
+    python3 manage.py runserver
     ```
 
 ## Использование

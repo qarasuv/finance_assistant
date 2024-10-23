@@ -24,6 +24,12 @@ class TransactionAdd(CreateView):
     template_name = 'add_transaction.html'
     success_url = reverse_lazy('index')
 
+    def get_form_kwargs(self):
+        kwargs = super(TransactionAdd, self).get_form_kwargs()
+        print(kwargs)
+        kwargs['user'] = self.request.user
+        return kwargs
+
 
 class CategoryAdd(CreateView):
     form_class = TransactionCategoryForm
